@@ -1,0 +1,88 @@
+body {
+  padding: 50px;
+  font   : 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+[m10] {
+  margin: 10px 10px;
+}
+
+[upper-left] {
+  top : 5px;
+  left: 5px;
+}
+
+[lower-right] {
+  bottom: 5px;
+  right : 5px;
+}
+
+/* CARDS HOLDER*/
+.container .card {
+  height       : 250px;
+  width        : 200px;
+  border       : 2px solid black;
+  border-radius: 5px;
+}
+
+.container .card .upper-left,
+.container .card .lower-right {
+  position        : absolute;
+  height          : 50px;
+  width           : 50px;
+  border-radius   : 5px;
+  text-align      : center;
+  font-size       : 25px;
+  line-height     : 46px;
+  font-weight     : 600;
+  background-color: #0f2f86;
+  color           : #fff;
+}
+
+.container .card .inner-border {
+  height  : 246px;
+  width   : 196px;
+  position: relative;
+  border  : 20px solid #0f2f86;
+}
+
+.container .card .center-wrapper {
+  position: absolute;
+  height  : 206px;
+  width   : 156px;
+  top     : 20px;
+  left    : 20px;
+}
+
+.container .card .center-wrapper h2 {
+  width     : 95%;
+  text-align: center;
+}
+
+.container .set-unset-button button {
+  width: 100px;
+}
+
+/* NOTIF HOLDER */
+.notif .notif-holder {
+  position     : absolute;
+  top          : 10px;
+  right        : 10px;
+  height       : 50px;
+  width        : 300px;
+  background   : #0f2f86;
+  color        : #fff;
+  font-size    : 18px;
+  border-radius: 5px;
+}
+
+/* DASHBOARD*/
+
+.container .player-container {
+  display              : grid;
+  grid-template-columns: auto auto auto;
+}
+
+.container .player-container .card {
+  margin: 10px auto;
+}

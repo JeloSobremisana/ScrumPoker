@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="carousel">
+    {{#each cards}}
+    <div class="card carousel-item">
+      <div class="inner-border"></div>
+      <div class="upper-left" upper-left>{{this}}</div>
+      <div class="lower-right" lower-right>{{this}}</div>
+      <div class="center-wrapper valign-wrapper">
+        <h2>{{this}}</h2>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <div class="set-unset-button center-align">
+    <button class="waves-effect waves-light btn green">Set</button>
+    <button class="waves-effect waves-light btn red">Unset</button>
+  </div>
+</div>
