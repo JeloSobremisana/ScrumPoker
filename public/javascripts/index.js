@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  var socket = io.connect('http://10.18.112.62:3000');
+  var socket = io.connect('http://10.18.112.42:3000');
 
   $('.registration-form').submit(function(e) {
     e.preventDefault();
