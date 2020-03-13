@@ -15,7 +15,7 @@ $(document).ready(function () {
   //SET PLAYER IN DASHBOARD
   socket.on('successReg', function(data) {
     $('.notif').append('<div class="notif-holder"><p class="center-align">' + data.name + ' has joined!</p></div>').fadeOut(2000, 'swing');
-    $('.player-container').append('<div class="playerdata center-align" id="' + data.id + '"><p>' + data.name + '</p>' +
+    $('.player-container').append('<div class="playerdata center-align" id="' + data.id + '"><h4>' + data.name + '</h4>' +
     '<div class="flip-card">' +
       '<div class="flip-card-inner">' +
         '<div class="flip-card-front"></div>' +
@@ -63,5 +63,17 @@ $(document).ready(function () {
     socket.emit('unsetScore', payload);
     $(this).attr('disabled', true);
     $('.set-button').removeAttr('disabled');
+  });
+
+  $('.reveal-button').click(function() {
+    $('.flip-card').addClass('flipped');
+    $('.hide-button').removeAttr('disabled');
+    $(this).attr('disabled', true);
+  });
+
+  $('.hide-button').click(function() {
+    $('.flip-card').removeClass('flipped');
+    $('.reveal-button').removeAttr('disabled');
+    $(this).attr('disabled', true);
   });
 });
