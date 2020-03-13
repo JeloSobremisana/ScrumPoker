@@ -36,16 +36,33 @@ $(document).ready(function () {
     var score = $('.card.active h2')[0].innerHTML;
     var payload = {
       id: userId,
-      score: score
+      score: score,
+      action: 'set'
     }
     socket.emit('setScore', payload);
+    $(this).attr('disabled', true);
+    $('.unset-button').removeAttr('disabled');
   });
 
   socket.on('returnScore', function(data) {
-
-    
     $('#score-'+data.id).append(data.score);
     $('.upper-left.score-'+data.id).append(data.score);
     $('.lower-right.score-'+data.id).append(data.score);
+    if(data.action == 'set') {
+      $('.playerdata#'+data.id).append('<h1>' + data.score+ '</h1>');
+    } else {
+      $('.playerdata#'+data.id+' h1').remove();
+    }
+  });
+
+  $('.unset-button').click(function() {
+    var userId = new URLSearchParams(window.location.search).get('id');
+    var payload = {
+      id: userId,
+      action: 'unset'
+    }
+    socket.emit('unsetScore', payload);
+    $(this).attr('disabled', true);
+    $('.set-button').removeAttr('disabled');
   });
 });

@@ -36,8 +36,12 @@ io.on('connection', function (socket) {
   });
 
   socket.on('setScore', function(data) {
-    io.emit('returnScore', {score: data.score, id: data.id});
-  })
+    io.emit('returnScore', {score: data.score, id: data.id, action: data.action});
+  });
+
+  socket.on('unsetScore', function(data) {
+    io.emit('returnScore', {score: null, id: data.id, action: data.action})
+  });
 });
 
 /**
