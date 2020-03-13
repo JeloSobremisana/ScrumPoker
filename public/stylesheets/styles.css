@@ -60,7 +60,7 @@ body {
   display: grid;
   grid-template-columns: auto auto auto;
 }
-.container .player-container .card {
+.container .player-container .playerdata {
   margin: 10px auto;
 }
 .flip-card {
@@ -132,12 +132,13 @@ body {
   position: absolute;
   height: 100%;
   width: 100%;
-  top: 25%;
+  top: 20%;
   text-align: center;
 }
 .flip-card-back .center-wrapper h1 {
   width: 95%;
   text-align: center;
+  color: #000;
 }
 /* NOTIF HOLDER */
 .notif .notif-holder {

@@ -15,12 +15,10 @@ $(document).ready(function () {
   //SET PLAYER IN DASHBOARD
   socket.on('successReg', function(data) {
     $('.notif').append('<div class="notif-holder"><p class="center-align">' + data.name + ' has joined!</p></div>').fadeOut(2000, 'swing');
-    $('.player-container').append('<div class="playerdata" style="text-align:center" id="' + data.id + '"><p>' + data.name + '</p>' +
+    $('.player-container').append('<div class="playerdata center-align" id="' + data.id + '"><p>' + data.name + '</p>' +
     '<div class="flip-card">' +
       '<div class="flip-card-inner">' +
-        '<div class="flip-card-front">' +
-          '<img src="../images/cards.jpg" alt="Card">' +
-        '</div>' +
+        '<div class="flip-card-front"></div>' +
         '<div class="flip-card-back">' +
           '<div class="inner-border"></div>' +
           '<div class="upper-left score-' + data.id + '"></div>' +
@@ -45,13 +43,14 @@ $(document).ready(function () {
   });
 
   socket.on('returnScore', function(data) {
-    $('#score-'+data.id).append(data.score);
-    $('.upper-left.score-'+data.id).append(data.score);
-    $('.lower-right.score-'+data.id).append(data.score);
     if(data.action == 'set') {
-      $('.playerdata#'+data.id).append('<h1>' + data.score+ '</h1>');
+      $('#score-'+data.id).append(data.score);
+      $('.upper-left.score-'+data.id).append(data.score);
+      $('.lower-right.score-'+data.id).append(data.score);
     } else {
-      $('.playerdata#'+data.id+' h1').remove();
+      $('#score-'+data.id).empty();
+      $('.upper-left.score-'+data.id).empty();
+      $('.lower-right.score-'+data.id).empty();
     }
   });
 
