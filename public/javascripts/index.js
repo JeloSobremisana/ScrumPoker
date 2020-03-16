@@ -1,5 +1,7 @@
 $(document).ready(function () {
-  var socket = io.connect('http://localhost:3000'); // INVOKE SERVER SIDE SOCKET
+  var hostname = $(location).attr('hostname');
+  var port = $(location).attr('port');
+  var socket = io.connect(hostname + ':' + port); // INVOKE SERVER SIDE SOCKET
 
   $('.carousel').carousel(); //INVOKE CAROUSEL CSS AND FUNCTIONALITY
 
