@@ -10,7 +10,7 @@ $(document).ready(function () {
     var userName = $('#name').val();
     socket.emit('register', userName);
     socket.on('successReg', function(data) {
-      window.location.href = '/scrum-poker?id=' + data.id;
+      window.location.href = '/scrum-poker?id=' + data.id + '&name=' + data.name;
     });
   });
 
@@ -77,5 +77,16 @@ $(document).ready(function () {
     $('.flip-card').removeClass('flipped');
     $('.reveal-button').removeAttr('disabled');
     $(this).attr('disabled', true);
+  });
+
+  $('.disconnect-button').click(function() {
+    var userName = new URLSearchParams(window.location.search).get('name');
+    var userId = new URLSearchParams(window.location.search).get('id');
+    socket.emit('dc', { name: userName, id: userId });
+    window.location.href = '/';
+  });
+
+  socket.on('dc', function(data) {
+    $('.playerdata#'+data.id).remove();
   });
 });

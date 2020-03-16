@@ -44,6 +44,11 @@ io.on('connection', function (socket) {
   socket.on('unsetScore', function(data) {
     io.emit('returnScore', {score: null, id: data.id, action: data.action})
   });
+
+  socket.on('dc', function(data) {
+    io.emit('dc', {name: data.name, id: data.id});
+    socket.disconnect();
+  });
 });
 
 /**
