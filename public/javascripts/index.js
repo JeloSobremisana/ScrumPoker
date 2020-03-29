@@ -18,6 +18,7 @@ $(document).ready(function () {
   socket.on('successReg', function(data) {
     $('.notif').append('<div class="notif-holder"><p class="center-align">' + data.name + ' has joined!</p></div>').fadeOut(2000, 'swing');
     $('.player-container').append('<div class="playerdata center-align" id="' + data.id + '"><h4>' + data.name + '</h4>' +
+    '<div class="pulse-holder">' +
     '<div class="flip-card">' +
       '<div class="flip-card-inner">' +
         '<div class="flip-card-front"></div>' +
@@ -28,7 +29,7 @@ $(document).ready(function () {
           '<div class="center-wrapper valign-center"><h1 id="score-' + data.id + '"></h1></div>' +
         '</div>' +
       '</div>' +
-    '</div></div>');
+    '</div></div></div>');
   }); 
 
   $('.set-button').click(function() {
@@ -46,10 +47,12 @@ $(document).ready(function () {
 
   socket.on('returnScore', function(data) {
     if(data.action == 'set') {
+      $('.playerdata#'+data.id + ' .pulse-holder').addClass('cyan pulse');
       $('#score-'+data.id).append(data.score);
       $('.upper-left.score-'+data.id).append(data.score);
       $('.lower-right.score-'+data.id).append(data.score);
     } else {
+      $('.playerdata#'+data.id + ' .pulse-holder').removeClass('cyan pulse');
       $('#score-'+data.id).empty();
       $('.upper-left.score-'+data.id).empty();
       $('.lower-right.score-'+data.id).empty();
