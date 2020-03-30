@@ -57,7 +57,17 @@ $(document).ready(function () {
       $('.upper-left.score-'+data.id).empty();
       $('.lower-right.score-'+data.id).empty();
     }
+    if(checkScores()) $('.reveal-button').removeAttr('disabled');
+    else $('.reveal-button').attr('disabled', true);
   });
+
+  function checkScores() {
+    var playerContainer = $('.player-container')[0].children;
+    var noOfPlayers = playerContainer.length;
+    var playerScores = $('.cyan.pulse').length;
+    if(noOfPlayers === playerScores) return true;
+    return false;
+  }
 
   $('.unset-button').click(function() {
     var userId = new URLSearchParams(window.location.search).get('id');
@@ -74,12 +84,19 @@ $(document).ready(function () {
     $('.flip-card').addClass('flipped');
     $('.hide-button').removeAttr('disabled');
     $(this).attr('disabled', true);
+    socket.emit('action', 'reveal');
   });
 
   $('.hide-button').click(function() {
     $('.flip-card').removeClass('flipped');
     $('.reveal-button').removeAttr('disabled');
     $(this).attr('disabled', true);
+    socket.emit('action', 'hide');
+  });
+
+  socket.on('action', function(data) {
+    if(data === 'reveal') $('.unset-button').attr('disabled', true);
+    else $('.unset-button').removeAttr('disabled');
   });
 
   $('.disconnect-button').click(function() {

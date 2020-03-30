@@ -45,6 +45,11 @@ io.on('connection', function (socket) {
     io.emit('returnScore', {score: null, id: data.id, action: data.action})
   });
 
+  socket.on('action', function(action) {
+    if(action === 'reveal') io.emit('action', 'reveal')
+    else io.emit('action', 'hide');
+  });
+
   socket.on('dc', function(data) {
     io.emit('dc', {name: data.name, id: data.id});
     socket.disconnect();
